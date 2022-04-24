@@ -17,7 +17,7 @@ public class CalculatorTest extends BaseTest {
                 .plus()
                 .leftBracket().number(100).divide().number(4).rightBracket()
                 .calculate();
-        Assert.assertEquals(34990, calculatorPage.getResult());
+        Assert.assertEquals(calculatorPage.getResult(), 34990);
 
         calculatorPage
                 .clear()
@@ -29,7 +29,7 @@ public class CalculatorTest extends BaseTest {
                 .clear()
                 .sqrt().number(81)
                 .calculate();
-        Assert.assertEquals(9, calculatorPage.getResult());
+        Assert.assertEquals(calculatorPage.getResult(), 9);
 
         Assert.assertEquals(DataProvider.getExpectedHistory(), calculatorPage.getHistory());
     }
