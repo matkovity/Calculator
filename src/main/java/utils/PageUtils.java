@@ -2,22 +2,23 @@ package utils;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
-@Slf4j
 public class PageUtils {
+
+    private static final Logger logger = Logger.getLogger(PageUtils.class.getName());
 
     protected void clickOnElement(SelenideElement target) {
         target.click();
-        log.debug("Clicked on element: " + target);
+        logger.info("Clicked on element: " + target);
     }
 
     protected String getTextFromElement(SelenideElement target) {
         String result = target.getValue();
-        log.debug("Get text: '" + result + "' from element: " + target);
+        logger.info("Get text: '" + result + "' from element: " + target);
         return result;
     }
 
@@ -26,6 +27,7 @@ public class PageUtils {
         for (SelenideElement singleElement : targets) {
             result.add(singleElement.getText());
         }
+        logger.info("Get texts: '" + result + "' from elements: " + targets);
         return result;
     }
 
