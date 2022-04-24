@@ -1,7 +1,7 @@
 package utils;
 
 import com.codeborne.selenide.Configuration;
-import org.junit.Before;
+import org.testng.annotations.BeforeMethod;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -12,10 +12,8 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class BaseTest {
 
-
-    @Before
+    @BeforeMethod
     public void before() {
-
         Configuration.browser = loadProperty().getProperty("browser");
         open("https://web2.0calc.com/");
     }
