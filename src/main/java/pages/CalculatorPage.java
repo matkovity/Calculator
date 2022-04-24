@@ -1,11 +1,15 @@
 package pages;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import utils.PageUtils;
 
+import javax.swing.event.DocumentEvent;
+
+import java.util.List;
+
 import static com.codeborne.selenide.Selectors.byId;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 
 public class CalculatorPage extends PageUtils {
 
@@ -23,6 +27,8 @@ public class CalculatorPage extends PageUtils {
     private final static SelenideElement buttonPi = $(byId("BtnPi"));
     private final static SelenideElement buttonRad = $(byId("trigorad"));
     private final static SelenideElement buttonSqrt = $(byId("BtnSqrt"));
+    private final static SelenideElement buttonHistory = $(byId("hist"));
+    private final static ElementsCollection historyElements = $$x("//ul/li/p[@data-inp]");
 
     public CalculatorPage number(Integer number) {
         String numberString = Integer.toString(number);
@@ -94,5 +100,10 @@ public class CalculatorPage extends PageUtils {
     public CalculatorPage sqrt() {
         clickOnElement(buttonSqrt);
         return this;
+    }
+
+    public List<String> getHistory() {
+        clickOnElement(buttonHistory);
+        return getTextFromElements(historyElements);
     }
 }

@@ -3,12 +3,16 @@ import org.junit.Test;
 import pages.CalculatorPage;
 import utils.BaseTest;
 
+import java.util.List;
+
 public class CalculatorTest extends BaseTest {
 
     CalculatorPage calculatorPage = new CalculatorPage();
 
     @Test
     public void calculatorTest() {
+        List<String> expectedHistory = List.of("sqrt(81", "cos(pi", "35*999+(100/4)");
+
         calculatorPage
                 .acceptConsent()
                 .number(35).multiply().number(999)
@@ -29,6 +33,6 @@ public class CalculatorTest extends BaseTest {
                 .calculate();
         Assert.assertEquals(9, calculatorPage.getResult());
 
-
+        Assert.assertEquals(expectedHistory, calculatorPage.getHistory());
     }
 }
