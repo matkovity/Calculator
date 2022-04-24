@@ -19,6 +19,10 @@ public class CalculatorPage extends PageUtils {
     private final static SelenideElement fieldResult = $(byId("input"));
     private final static SelenideElement buttonConsent = $x("//button[@class='fc-button fc-cta-consent fc-primary-button']//p");
     private final static SelenideElement buttonClear = $(byId("BtnClear"));
+    private final static SelenideElement buttonCos = $(byId("BtnCos"));
+    private final static SelenideElement buttonPi = $(byId("BtnPi"));
+    private final static SelenideElement buttonRad = $(byId("trigorad"));
+    private final static SelenideElement buttonSqrt = $(byId("BtnSqrt"));
 
     public CalculatorPage number(Integer number) {
         String numberString = Integer.toString(number);
@@ -69,6 +73,26 @@ public class CalculatorPage extends PageUtils {
 
     public CalculatorPage clear() {
         clickOnElement(buttonClear);
+        return this;
+    }
+
+    public CalculatorPage cos() {
+        clickOnElement(buttonCos);
+        return this;
+    }
+
+    public CalculatorPage pi() {
+        clickOnElement(buttonPi);
+        return this;
+    }
+
+    public CalculatorPage rad() {
+        clickOnElement(buttonRad);
+        return this;
+    }
+
+    public CalculatorPage sqrt() {
+        clickOnElement(buttonSqrt);
         return this;
     }
 }
