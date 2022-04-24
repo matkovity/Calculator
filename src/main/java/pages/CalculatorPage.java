@@ -1,56 +1,74 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import utils.PageUtils;
 
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
-public class CalculatorPage {
+public class CalculatorPage extends PageUtils {
 
-    private final static SelenideElement button0 = $(byId("Btn0"));
-    private final static SelenideElement button1 = $(byId("Btn1"));
-    private final static SelenideElement button3 = $(byId("Btn3"));
-    private final static SelenideElement button4 = $(byId("Btn4"));
-    private final static SelenideElement button5 = $(byId("Btn5"));
-    private final static SelenideElement button9 = $(byId("Btn9"));
+    private final static String button = "Btn%s";
     private final static SelenideElement buttonPlus = $(byId("BtnPlus"));
     private final static SelenideElement buttonMultiply = $(byId("BtnMult"));
     private final static SelenideElement buttonDivide = $(byId("BtnDiv"));
     private final static SelenideElement buttonCalculate = $(byId("BtnCalc"));
+    private final static SelenideElement buttonBracketLeft = $(byId("BtnParanL"));
+    private final static SelenideElement buttonBracketRight = $(byId("BtnParanR"));
+    private final static SelenideElement fieldResult = $(byId("input"));
+    private final static SelenideElement buttonConsent = $x("//button[@class='fc-button fc-cta-consent fc-primary-button']//p");
+    private final static SelenideElement buttonClear = $(byId("BtnClear"));
 
-    public CalculatorPage pressNull() {
-        button0.click();
+    public CalculatorPage number(Integer number) {
+        String numberString = Integer.toString(number);
+        for (int i = 0; i < numberString.length(); i++) {
+            clickOnElement($(byId(String.format(button, numberString.charAt(i)))));
+        }
         return this;
     }
 
-    public CalculatorPage pressOne() {
-        button1.click();
+    public CalculatorPage plus() {
+        clickOnElement(buttonPlus);
         return this;
     }
 
-    public CalculatorPage pressThree() {
-        button3.click();
+    public CalculatorPage multiply() {
+        clickOnElement(buttonMultiply);
         return this;
     }
 
-    public CalculatorPage pressFour() {
-        button4.click();
+    public CalculatorPage divide() {
+        clickOnElement(buttonDivide);
         return this;
     }
 
-    public CalculatorPage pressFive() {
-        button5.click();
+    public CalculatorPage calculate() {
+        clickOnElement(buttonCalculate);
         return this;
     }
 
-    public CalculatorPage pressNine() {
-        button9.click();
+    public CalculatorPage leftBracket() {
+        clickOnElement(buttonBracketLeft);
         return this;
     }
 
-    public CalculatorPage pressPlus() {
-        buttonPlus.click();
+    public CalculatorPage rightBracket() {
+        clickOnElement(buttonBracketRight);
         return this;
     }
 
+    public int getResult() {
+        return Integer.parseInt(getTextFromElement(fieldResult));
+    }
+
+    public CalculatorPage acceptConsent() {
+        clickOnElement(buttonConsent);
+        return this;
+    }
+
+    public CalculatorPage clear() {
+        clickOnElement(buttonClear);
+        return this;
+    }
 }

@@ -12,6 +12,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class BaseTest {
 
+
     @Before
     public void before() {
 
