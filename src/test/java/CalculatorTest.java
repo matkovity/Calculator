@@ -1,4 +1,5 @@
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.CalculatorPage;
 import utils.BaseTest;
@@ -9,7 +10,7 @@ public class CalculatorTest extends BaseTest {
 
     CalculatorPage calculatorPage = new CalculatorPage();
 
-    @Test
+    @Test()
     public void calculatorTest() {
         List<String> expectedHistory = List.of("sqrt(81", "cos(pi", "35*999+(100/4)");
 
