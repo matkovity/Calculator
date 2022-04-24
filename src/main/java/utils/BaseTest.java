@@ -12,6 +12,8 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class BaseTest {
 
+    private static final String urlToProperties = "src/main/resources/browserProperties.properties";
+
     @BeforeMethod
     public void before() {
         Configuration.browser = loadProperty().getProperty("browser");
@@ -20,7 +22,7 @@ public class BaseTest {
 
     private Properties loadProperty() {
         Properties prop = new Properties();
-        try (InputStream input = new FileInputStream("src/main/resources/browserProperties.properties")) {
+        try (InputStream input = new FileInputStream(urlToProperties)) {
             prop.load(input);
         } catch (IOException ex) {
             ex.printStackTrace();
