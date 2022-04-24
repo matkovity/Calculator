@@ -12,17 +12,17 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class BaseTest {
 
-    private static final String urlToProperties = "src/main/resources/browserProperties.properties";
+    private static final String URL_TO_PROPERTIES = "src/main/resources/browserProperties.properties";
 
     @BeforeMethod
-    public void before() {
+    public static void before() {
         Configuration.browser = loadProperty().getProperty("browser");
         open("https://web2.0calc.com/");
     }
 
-    private Properties loadProperty() {
+    private static Properties loadProperty() {
         Properties prop = new Properties();
-        try (InputStream input = new FileInputStream(urlToProperties)) {
+        try (InputStream input = new FileInputStream(URL_TO_PROPERTIES)) {
             prop.load(input);
         } catch (IOException ex) {
             ex.printStackTrace();
