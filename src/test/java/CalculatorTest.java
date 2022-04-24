@@ -1,10 +1,8 @@
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.CalculatorPage;
 import utils.BaseTest;
-
-import java.util.List;
+import utils.DataProvider;
 
 public class CalculatorTest extends BaseTest {
 
@@ -12,7 +10,6 @@ public class CalculatorTest extends BaseTest {
 
     @Test()
     public void calculatorTest() {
-        List<String> expectedHistory = List.of("sqrt(81", "cos(pi", "35*999+(100/4)");
 
         calculatorPage
                 .acceptConsent()
@@ -34,6 +31,6 @@ public class CalculatorTest extends BaseTest {
                 .calculate();
         Assert.assertEquals(9, calculatorPage.getResult());
 
-        Assert.assertEquals(expectedHistory, calculatorPage.getHistory());
+        Assert.assertEquals(DataProvider.getExpectedHistory(), calculatorPage.getHistory());
     }
 }
